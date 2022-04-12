@@ -1,0 +1,82 @@
+	<form  action="/register" method="POST">
+
+			 <div class="form-group">
+			    <label >firstname</label>
+			    <input type="text" class="form-control"  placeholder="firstname" name="firstname">
+			  </div>
+
+              <div class="form-group">
+			    <label >lastname</label>
+			    <input type="text" class="form-control"  placeholder="lastname" name="lastname">
+			  </div>
+
+              <div class="form-group">
+			    <label >Age</label>
+			    <input type="number" class="form-control"  placeholder="Enter your age" name="age">
+			  </div>	
+
+			  <div class="form-group">
+			    <label >Email address</label>
+			    <input type="email" class="form-control"  placeholder="name@example.com" name="email">
+			  </div>
+
+			   <div class="form-group">
+			    <label >Mobile</label>
+			    <input type="number" class="form-control"  placeholder="mobilenumber" name="phone">
+			  </div>
+
+              <div class="form-group">
+			    <label >Password</label>
+			    <input type="Password" class="form-control"  placeholder="Password" name="password">
+			  </div>
+
+              <div class="form-group">
+			    <label >Confirm password</label>
+			    <input type="Password" class="form-control"  placeholder="Confirmpassword" name="confirmpassword">
+			  </div>
+
+               <div class="form-group">
+                   <div class="maxl">
+                       <label class="radio inline">
+			    <input type="radio" name="gender" value="male" checked>
+                <span>Male</span>
+                </label>
+                <label class="radio inline">
+               <input type="radio" name="gender" value="Female">
+               <span>Female</span>
+               </label>
+                </div>
+			  </div>
+                 
+                    
+
+			   <div class="form-group">
+			    <label >Select Symptoms</label> <br>
+
+			 	 <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
+				    <input type="checkbox" class="custom-control-input " id="customcheckbox1"    name="coronasym[]" value="cold">
+				    <label class="custom-control-label" for="customcheckbox1">Cold</label>
+				  </div>
+				  <div class="custom-control custom-checkbox custom-control-inline text-capitalize ">
+				    <input type="checkbox" class="custom-control-input  "  id="customcheckbox2" name="coronasym[]" value="fever">
+				    <label class="custom-control-label" for="customcheckbox2">fever</label>
+				  </div>
+
+				   <div class="custom-control custom-checkbox custom-control-inline text-capitalize ">
+				    <input type="checkbox" class="custom-control-input  " id="customcheckbox3" name="coronasym[]" value="breath">
+				    <label class="custom-control-label" for="customcheckbox3">difficulty in breath</label>
+				  </div>
+
+				   <div class="custom-control custom-checkbox custom-control-inline text-capitalize ">
+				    <input type="checkbox" class="custom-control-input  " id="customcheckbox4" name="coronasym[]" value="tired">
+				    <label class="custom-control-label" for="customcheckbox4">feeling weak</label>
+				  </div>
+				</div>
+
+			  <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Descripe how you are feeling</label>
+			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="msg"></textarea>
+			  </div>
+
+			  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+	</form>
