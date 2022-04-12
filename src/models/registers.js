@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const res = require("express/lib/response");
+const { json } = require("express/lib/response");
 
 const employeeSchema = new mongoose.Schema({
     firstname:{
@@ -50,6 +51,7 @@ const employeeSchema = new mongoose.Schema({
 //pre simply means ******call it before another work*********for board exam we have to our registration for before giving exam
 //post simply means after showing registration what should we have to do
 
+//GENERATE AND ADD JWT
 employeeSchema.methods.generateAuthToken = async function(){//we dont use fat arrow function because we are playing with this keyword
    try{
     const token = jwt.sign({_id:this._id.toString()}, process.env.SECRET_KEY);//secret key should be kept on .env file

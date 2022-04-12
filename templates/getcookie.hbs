@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{>header}}
+	<title>first responsive website</title>
+
+</head>
+<body>
+
+{{>navbar}}
+<div class="main_header">
+	<div class="row w-100 h-100 row_style">
+		<div class="col-lg-5 col-md-5 col-12 order-lg-1 order-2 " >
+			<div class="leftside w-100 h-100 d-flex justify-content-center align-items-center eksath_anime">
+				<img src="images/eksath.png", alt="jj", width="300" height="300" >
+			</div>
+		</div>
+		<h1>This is getcookie section</h1>
+		<div class="col-lg-7 col-md-7 col-12 order-1 order-lg-2 " >
+			<div class="rightside  w-100 h-100 d-flex justify-content-center align-items-center text-left">
+				<h1>Let's Stay Safe & Fight Together <br> Against Cor<span class="corona_anime"><img src="images/corona.png"></span>na Virus</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ******************* Project done start *********************** -->
+	
+<section class="corono_update">
+	<div class=" mb-3 ">
+		<h3 class="text-center text-uppercase"> covid-19 updates</h3>
+	</div>
+
+	<div class=" d-flex justify-content-around align-items-center">
+		<div>
+			<h1 class="count"> 15,24,266 </h1>
+			<p>Passengers screened at airport</p>
+		</div>
+		<div>
+			<h1 class="count"> 512 </h1>
+			<p>Active COVID-19 cases*</p>
+		</div>
+		<div>
+			<h1 class="count"> 40 </h1>
+			<p>Cured/discharged cases</p>
+		</div>
+		<div>
+			<h1 class="count"> 9 </h1>
+			<p>Death cases</p>
+		</div>
+	</div>
+</section>
+
+<!-- ******************* Project done ends *********************** -->
+
+<!-- *********************** about section start ****************** -->
+
+<div class="container-fluid sub_section pt-5 pb-5" id="aboutid">
+	<div class="section_header text-center mb-5 mt-4">
+		<h1 class="">About COVID-19</h1>
+	</div>
+
+	<div class="row pt-5">
+		<div class="col-lg-5 col-md-6  col-6 ml-5">
+			<!-- <div class="  "> -->
+				<img src="images/aboutcorona.jpg" class="img-fluid">
+			<!-- </div> -->
+		</div>
+
+		<div class="col-lg-6  col-md-6 col-6">
+				<h2 class="pb-3">What is COVID-19 (Corona-Virus)</h2>
+				<p>COVID-19 is the infectious disease caused by the most recently discovered coronavirus. This new virus and disease were unknown before the outbreak began in Wuhan, China, in December 2019.</p>
+				<p>Coronaviruses are a large family of viruses which may cause illness in animals or humans.  In humans, several coronaviruses are known to cause respiratory infections ranging from the common cold to more severe diseases such as Middle East Respiratory Syndrome (MERS) and Severe Acute Respiratory Syndrome (SARS). The most recently discovered coronavirus causes coronavirus disease COVID-19.
+				</p>
+			
+		</div>
+	</div>
+</div>
+
+<!-- ********************************* symptoms section ****************************** -->
+<!-- *************************************** Prevention section *************** -->
+
+{{>images}}
+
+<!-- ************************** contact us *********************** -->
+
+<div class="container-fluid  pt-5 pb-5 mt-5" id="contactid">
+	<div class="section_header text-center mb-5">
+		<h1 class="text-capitalize"> Contact us ASAP  </h1>
+	</div>
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 col-12"> 
+		{{>register}}
+		</div>
+	</div>
+
+</div>
+
+</div>
+
+
+<div class="containter scrolltop float-right pr-5">
+	<i class="fa fa-arrow-up"  onclick="topFunction()" id="myBtn" > </i> 
+</div>
+<!-- *********************************** footer part ****************** -->
+
+{{>footer}}
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+<script>
+
+$('.count').counterUp({
+  		delay:10,
+  		time:300
+   	})
+
+// ************ top arrow script ***************
+
+mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+</script>
+</body>
+</html>

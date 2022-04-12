@@ -5,6 +5,8 @@ const express = require("express");
 const app = express()
 const hbs = require("hbs")
 require("./db/conn")
+var cookieParser = require('cookie-parser')
+
 
 const Register = require("./models/registers")
 const port = process.env.PORT || 3000
@@ -13,6 +15,7 @@ const template_path =  path.join(__dirname, "../templates/views");
 const partials_path =  path.join(__dirname, "../templates/partials");
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(express.urlencoded({extended:false}))//for getting data written on form
 app.use(express.static(static_path));
 app.set("view engine", "hbs");
@@ -30,6 +33,9 @@ res.render("index")
 app.get("/register", (req, res)=>{
     res.render("register")
     })
+    app.get("/getcookie", (req, res)=>{
+        res.render("getcookie")
+        })
     
     
     app.post("/register", async(req, res)=>{
@@ -58,6 +64,14 @@ app.get("/register", (req, res)=>{
                //HASH PASSWORD before saving to database(so it is *****middleware****)work between
                //A middleware is basically a function that will the receive the Request and Response objects,
                const token = await registerEmployee.generateAuthToken(); 
+               //*************** STORE JWT TOKENS IN HTTPOnly Cookies using node js ************************************************************************* */
+               //SECURE JWT AUNTHENTICATION
+               //the res.cookies function is used to set the cookie name to value
+               //res.cookie()The value parameter may be a string or object converted to json
+                    res.cookie("jwt", token, {
+                        expires:new Date(Date.now() + 30000),
+                        httpOnly:true
+                    });
              
                const registered = await registerEmployee.save();
               res.status(201).render("index");
@@ -83,6 +97,14 @@ app.get("/register", (req, res)=>{
             //it show password of particular email address
             const passwordmatch = await bcryptjs.compare(password, useremail.password)
             const token = await useremail.generateAuthToken(); 
+                    //   HttpOnly is a flag that can be included in a Set-Cookie response header.
+        //   The presence of this flag will tell browser to not allow client side script access to the
+        //   cookies..
+            res.cookie("jwt", token, {
+                expires:new Date(Date.now() + 30000),
+                httpOnly:true,
+                //secure:true  //Only for https
+            });
              
             if(passwordmatch){
           // if(useremail.password == password)
