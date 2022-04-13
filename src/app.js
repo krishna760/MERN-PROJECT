@@ -43,7 +43,7 @@ app.get("/register", (req, res)=>{
             })
             //logout from all devices
                      req.tokens = [];
-                     
+
             res.clearCookie("jwt")//for delete cookies for logout
          console.log("logout successfully")
          await req.user.save()
