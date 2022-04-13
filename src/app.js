@@ -5,7 +5,8 @@ const express = require("express");
 const app = express()
 const hbs = require("hbs")
 require("./db/conn")
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
+const auth = require("./middleware/auth")
 
 
 const Register = require("./models/registers")
@@ -25,7 +26,7 @@ hbs.registerPartials(partials_path);
 console.log(`this is secret key ${process.env.SECRET_KEY}`)////for console secret key
 
 
-app.get("/", (req, res)=>{
+app.get("/", (req, res)=>{//before rendering index page we have added middleware which is defined in auth.js file
 res.render("index")
 })
 //create a new user in our database
@@ -33,7 +34,27 @@ res.render("index")
 app.get("/register", (req, res)=>{
     res.render("register")
     })
-    app.get("/getcookie", (req, res)=>{
+
+    app.get("/logout", auth, async(req, res)=>{
+        try{
+            //for single devices
+            req.user.tokens = req.user.tokens.filter((currelement)=>{//for loglot from database
+                return currelement.token !== req.token;//if user login in multiple devices we want only logout from particular devices
+            })
+            //logout from all devices
+                     req.tokens = [];
+                     
+            res.clearCookie("jwt")//for delete cookies for logout
+         console.log("logout successfully")
+         await req.user.save()
+         res.render("login")
+        }catch(error){
+            res.status(500).send(error)
+        }
+        })
+
+    app.get("/getcookie", auth , (req, res)=>{
+        console.log(`this is jwt come from coookie ${req.cookies.jwt}`)//to get the cookies
         res.render("getcookie")
         })
     
@@ -69,7 +90,7 @@ app.get("/register", (req, res)=>{
                //the res.cookies function is used to set the cookie name to value
                //res.cookie()The value parameter may be a string or object converted to json
                     res.cookie("jwt", token, {
-                        expires:new Date(Date.now() + 30000),
+                        expires:new Date(Date.now() + 600000),
                         httpOnly:true
                     });
              
