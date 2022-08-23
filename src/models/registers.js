@@ -7,16 +7,22 @@ const { json } = require("express/lib/response");
 const employeeSchema = new mongoose.Schema({
     firstname:{
         type:String,
-        required:true
+        required:true,
+        minLength: 3,
+        maxLength: 15
     },
     lastname:{
         type:String,
-        required:true
+        required:true,
+        minLength: 3,
+        maxLength: 15
     },
     email:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
+        minLength: 8,
+        maxLength: 25
     },
     gender:{
         type:String,
@@ -24,19 +30,27 @@ const employeeSchema = new mongoose.Schema({
     },
     phone:{
         type:Number,
-        required:true
+        required:true,
+        minLength: 9,
+        maxLength: 13
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        minLength: 5,
+        maxLength: 30
     },
     confirmpassword:{
         type:String,
-        required:true
+        required:true,
+        minLength: 5,
+        maxLength: 30
     },
     age:{
         type:Number,
-        required:true
+        required:true,
+        minLength: 1,
+        maxLength: 3
     },
     tokens:[{
         token:{

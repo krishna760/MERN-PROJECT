@@ -23,7 +23,7 @@ app.set("view engine", "hbs");
 app.set("views", template_path);
 hbs.registerPartials(partials_path);
 
-console.log(`this is secret key ${process.env.SECRET_KEY}`)////for console secret key
+//console.log(`this is secret key ${process.env.SECRET_KEY}`)////for console secret key
 
 
 app.get("/", (req, res)=>{//before rendering index page we have added middleware which is defined in auth.js file
@@ -80,21 +80,23 @@ app.get("/register", (req, res)=>{
                 password : password,
                 confirmpassword : cpassword
                })
-
+               console.log(registerEmployee)
 
                //HASH PASSWORD before saving to database(so it is *****middleware****)work between
                //A middleware is basically a function that will the receive the Request and Response objects,
                const token = await registerEmployee.generateAuthToken(); 
+               console.log(`token is ${token}`)
                //*************** STORE JWT TOKENS IN HTTPOnly Cookies using node js ************************************************************************* */
                //SECURE JWT AUNTHENTICATION
                //the res.cookies function is used to set the cookie name to value
                //res.cookie()The value parameter may be a string or object converted to json
-                    res.cookie("jwt", token, {
+                 res.cookie("jwt", token, {
                         expires:new Date(Date.now() + 600000),
                         httpOnly:true
                     });
              
                const registered = await registerEmployee.save();
+               console.log(registered)
               res.status(201).render("index");
                console.log(registered)
             }else{
@@ -130,6 +132,7 @@ app.get("/register", (req, res)=>{
             if(passwordmatch){
           // if(useremail.password == password)
                  res.status(201).render("index");
+                 res.innerHtml = `<p>You are in another page</p>`;
              }else{
                  res.send("invalid login details")
              }
